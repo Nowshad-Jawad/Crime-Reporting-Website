@@ -1,0 +1,97 @@
+<?php
+
+
+namespace App\Http\Controllers;
+
+use DB;
+use Illuminate\Http\Request;
+use App\Models\User;
+
+class AdminDashBoardController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show_user(){
+        
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit_user($id){
+        $edit = User::find($id);
+        return view('hq.edituser', compact('edit'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id){
+        $this->validate($request,[
+            'name'=>'required',
+            'email'=>'required',
+            'role'=>'required'
+        ]);
+
+        $user = User::find($id);
+        $user->name = $request->input('title');
+        $user->email = $request->input('email');
+        $user->role = $request->input('role');
+
+        return redirect()->route('admin.edituser');
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}
